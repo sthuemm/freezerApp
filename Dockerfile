@@ -13,4 +13,4 @@ COPY . /usr/src/app
 # Open port 4200. This is the port that our development server uses
 EXPOSE 4200
 # Start the application. This is the same as running ng serve.
-CMD ["npm", "prod"]
+CMD ["ng", "serve", "-prod"]
