@@ -1,4 +1,4 @@
-FROM node:8.4
+FROM hypriot/rpi-node
 # Create the target directory in the imahge
 RUN mkdir -p /usr/src/app
 # Set the created directory as the working directory
