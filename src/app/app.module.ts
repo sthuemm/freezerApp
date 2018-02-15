@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { HttpModule} from "@angular/http"
 
 import { AppComponent } from './app.component';
@@ -12,7 +12,10 @@ import { AppComponent } from './app.component';
     BrowserModule,
     HttpModule
   ],
-  providers: [],
+  providers: [ {
+    provide: LOCALE_ID,
+    useValue: 'de'
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
