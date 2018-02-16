@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
-import { Http, Response, Headers } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { credentials } from '../credentials/credentials'
+import {TranslateService} from "@ngx-translate/core";
 
 
 @Component({
@@ -10,31 +9,18 @@ import { credentials } from '../credentials/credentials'
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
 
-  data:any = {};
 
-  constructor(private _http: Http) {
-    this.getWelcome();
-  }
+  constructor(public translate: TranslateService) {
+    translate.addLangs(['de','en']);
+    translate.setDefaultLang('de');
 
-  private getHelloWorldData(){
-    return this._http.get(credentials.host+'/product/get')
-      .map((res: Response) => res)
-  }
 
-  getWelcome() {
-    this.getHelloWorldData().subscribe(data => {
-      console.log(data.text());
-      this.data = data.text();
-    })
+    let browserLanguage = translate.getBrowserLang();
+    console.log(browserLanguage);
+    translate.use(browserLanguage.match(/de|en/) ? browserLanguage : 'en');
   }
 
 
-  private getHeaders(){
-    let headers = new Headers();
-    headers.append('Accept', 'application/json');
-    return headers;
-  }
 
 }
